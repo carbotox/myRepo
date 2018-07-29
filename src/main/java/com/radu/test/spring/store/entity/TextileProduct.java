@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="PRODUCT_TEXTILE")
+//@Table(name="PRODUCT_TEXTILE")
 @DiscriminatorValue("TEXTILE")
 public class TextileProduct extends Product {
 	

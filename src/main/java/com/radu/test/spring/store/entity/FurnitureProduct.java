@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="PRODUCT_FURNITURE")
+//@Table(name="PRODUCT_FURNITURE")
 @DiscriminatorValue("FURNITURE")
 public class FurnitureProduct extends Product {
 

@@ -22,7 +22,7 @@ public class OrderRequest {
 
 	public List<ProductRequestItem> getProducts() {
 		if (products == null) {
-			products = new ArrayList<>();
+			products = new ArrayList<ProductRequestItem>();
 		}
 		return products;
 	}

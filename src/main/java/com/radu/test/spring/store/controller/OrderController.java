@@ -23,7 +23,7 @@ public class OrderController {
 	}
 	
 	@PostMapping("/newOrder")
-	public void createOrder(@RequestParam(value = "orderRequest") OrderRequest orderRequest) {
+	public void createOrder(OrderRequest orderRequest) {
 		orderService.createOrder(orderRequest);
 	}
 

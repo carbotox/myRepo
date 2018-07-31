@@ -1,0 +1,10 @@
+{
+  "customerId" : 2,
+  "products" : [ {
+    "productId" : 2,
+    "amount" : 3
+  }, {
+    "productId" : null,
+    "amount" : 1
+  } ]
+}

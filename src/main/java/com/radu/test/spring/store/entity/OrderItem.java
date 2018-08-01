@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -23,10 +24,17 @@ public class OrderItem {
 	private Product product;
 	
 	@Column(name="AMOUNT",nullable = false)
-	private Long amount;
+	private Integer amount;
 	
 	@Column(name="TOTAL_PRICE", nullable = false)
 	private BigDecimal totalPrice;
+	
+	@Column(name="TOTAL_PRICE_DISCOUNT",nullable = false)
+	private BigDecimal totalPriceDiscount;
+	
+	@ManyToOne
+	@JoinColumn(name = "ORDER_ID")
+	private Order order;
 	
 	public OrderItem() {
 	}
@@ -39,11 +47,11 @@ public class OrderItem {
 		this.product = product;
 	}
 
-	public Long getAmount() {
+	public Integer getAmount() {
 		return amount;
 	}
 
-	public void setAmount(Long amount) {
+	public void setAmount(Integer amount) {
 		this.amount = amount;
 	}
 
@@ -60,6 +68,19 @@ public class OrderItem {
 	}
 	
 	
+	public Order getOrder() {
+		return order;
+	}
 	
+	public void setOrder(Order order) {
+		this.order = order;
+	}
 
+	public BigDecimal getTotalPriceDiscount() {
+		return totalPriceDiscount;
+	}
+
+	public void setTotalPriceDiscount(BigDecimal totalPriceDiscount) {
+		this.totalPriceDiscount = totalPriceDiscount;
+	}
 }

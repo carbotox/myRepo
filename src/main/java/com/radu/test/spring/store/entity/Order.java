@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="ORDER")
+@Table(name="ORDR")
 public class Order {
 
 	@Id
@@ -26,15 +27,30 @@ public class Order {
 	private Date date;
 	@Column(name="TOTAL_PRICE",nullable = false)
 	private BigDecimal totalPrice;
+	
+	@Column(name="TOTAL_PRICE_DISCOUNT",nullable = false)
+	private BigDecimal totalPriceDiscount;
 
 	@ManyToOne
 	@JoinColumn(name = "CUSTOMER_ID")
 	private User customer;
 	
-	@OneToMany
+	@OneToMany(
+	        mappedBy = "order", 
+	        cascade = CascadeType.ALL, 
+	        orphanRemoval = false
+	    )
 	private List<OrderItem> orderItems;
 	
 	public Order() {
+	}
+
+	public BigDecimal getTotalPriceDiscount() {
+		return totalPriceDiscount;
+	}
+
+	public void setTotalPriceDiscount(BigDecimal totalPriceDiscount) {
+		this.totalPriceDiscount = totalPriceDiscount;
 	}
 
 	public Date getDate() {

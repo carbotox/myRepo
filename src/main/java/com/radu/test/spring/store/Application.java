@@ -2,7 +2,9 @@ package com.radu.test.spring.store;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +35,8 @@ public class Application {
 	@Bean
 	public CommandLineRunner init(ProductRepository productRepository, MembershipRepository membershipRepository,
 			UserRepository userRepository) {
-		return (args) -> {
+		
+		return (args) ->  {
 
 			// fetch all customers
 			log.info("Init DB");
@@ -48,7 +51,7 @@ public class Application {
 			Membership membership = new Membership();
 			membership.setName("Hotdogs discounts");
 
-			List<ProductDiscount> discounts = new ArrayList<ProductDiscount>();
+			Set<ProductDiscount> discounts = new HashSet<ProductDiscount>();
 
 			productRepository.findAll().forEach(product -> {
 				if (product instanceof FoodProduct) {
@@ -78,6 +81,9 @@ public class Application {
 				log.info(product.toString());
 			});
 
+			userRepository.findAll().forEach(usr -> {
+				log.info(usr.toString());
+			});
 		};
 	}
 

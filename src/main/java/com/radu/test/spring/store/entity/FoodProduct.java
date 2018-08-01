@@ -3,7 +3,6 @@ package com.radu.test.spring.store.entity;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.Table;
 
 @Entity(name = "FOOD")
 //@Table(name="PRODUCT_FOOD")

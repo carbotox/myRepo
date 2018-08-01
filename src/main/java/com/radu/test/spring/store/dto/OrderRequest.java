@@ -1,10 +1,16 @@
 package com.radu.test.spring.store.dto;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderRequest {
+public class OrderRequest implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6147771937769627642L;
+
 	public Long customerId;
 	
 	List<ProductRequestItem> products;

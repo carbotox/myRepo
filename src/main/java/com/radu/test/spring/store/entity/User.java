@@ -1,6 +1,6 @@
 package com.radu.test.spring.store.entity;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,12 +26,12 @@ public class User {
 	@Column(name = "LAST_NAME", nullable = false)
 	private String lastName;
 	
-	@ManyToOne(optional =true,fetch = FetchType.LAZY)
+	@ManyToOne(optional =true)
     @JoinColumn(name = "MEMBERSHIP_ID")
 	private Membership membership;
 
-	@OneToMany
-	private List<Order> orders;
+	@OneToMany(fetch = FetchType.EAGER)
+	private Set<Order> orders;
 	
 	public Long getId() {
 		return id;
@@ -59,6 +59,12 @@ public class User {
 
 	public void setMembership(Membership membership) {
 		this.membership = membership;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", membership=" + membership
+				+ ", orders=" + orders + "]";
 	}
 
 }

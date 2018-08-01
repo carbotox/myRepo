@@ -1,9 +1,15 @@
 package com.radu.test.spring.store.dto;
 
-public class ProductRequestItem {
+import java.io.Serializable;
 
+public class ProductRequestItem implements Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8212954490311476831L;
 	public Long productId;
-	public Long amount;
+	public Integer amount;
 	
 	public ProductRequestItem() {
 	}
@@ -14,10 +20,10 @@ public class ProductRequestItem {
 	public void setProductId(Long productId) {
 		this.productId = productId;
 	}
-	public Long getAmount() {
+	public Integer getAmount() {
 		return amount;
 	}
-	public void setAmount(Long amount) {
+	public void setAmount(Integer amount) {
 		this.amount = amount;
 	}
 	

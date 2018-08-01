@@ -1,10 +1,12 @@
 package com.radu.test.spring.store.entity;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,9 +27,10 @@ public class Membership {
 	@OneToMany(
 	        mappedBy = "membership", 
 	        cascade = CascadeType.ALL, 
-	        orphanRemoval = true
+	        orphanRemoval = true,
+	        fetch = FetchType.EAGER
 	    )
-	private List<ProductDiscount> discounts;
+	private Set<ProductDiscount> discounts;
 	
 	@OneToMany(
 	        mappedBy = "membership", 
@@ -37,11 +40,11 @@ public class Membership {
 	private List<User> users;
 	
 
-	public List<ProductDiscount> getDiscounts() {
+	public Set<ProductDiscount> getDiscounts() {
 		return discounts;
 	}
 
-	public void setDiscounts(List<ProductDiscount> discounts) {
+	public void setDiscounts(Set<ProductDiscount> discounts) {
 		this.discounts = discounts;
 	}
 
@@ -55,6 +58,11 @@ public class Membership {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return "Membership [id=" + id + ", name=" + name + ", discounts=" + discounts + "]";
 	}
 
 }

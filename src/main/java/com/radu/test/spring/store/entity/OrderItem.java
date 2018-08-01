@@ -32,8 +32,8 @@ public class OrderItem {
 	@Column(name="TOTAL_PRICE_DISCOUNT",nullable = false)
 	private BigDecimal totalPriceDiscount;
 	
-	@ManyToOne
-	@JoinColumn(name = "ORDER_ID")
+	@ManyToOne(optional=false)
+//	@JoinColumn(name = "ORDER_ID")
 	private Order order;
 	
 	public OrderItem() {

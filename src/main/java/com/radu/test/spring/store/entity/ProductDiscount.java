@@ -60,4 +60,9 @@ public class ProductDiscount {
 		this.membership = membership;
 	}
 
+	@Override
+	public String toString() {
+		return "ProductDiscount [id=" + id + ", product=" + product + ", discount=" + discount + "]";
+	}
+
 }

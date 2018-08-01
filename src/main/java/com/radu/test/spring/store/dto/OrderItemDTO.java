@@ -3,15 +3,16 @@ package com.radu.test.spring.store.dto;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.radu.test.spring.store.entity.Color;
 
+@JsonInclude(JsonInclude.Include.NON_NULL) 
 public class OrderItemDTO implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 7109975187359279586L;
-	private Long id;
 	private String productName;
 	private BigDecimal price;
 	private String description;
@@ -24,14 +25,6 @@ public class OrderItemDTO implements Serializable {
 	private BigDecimal totalPriceDiscount;
 
 	public OrderItemDTO() {
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getProductName() {

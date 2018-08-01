@@ -19,7 +19,6 @@ import com.radu.test.spring.store.entity.Membership;
 import com.radu.test.spring.store.entity.Order;
 import com.radu.test.spring.store.entity.OrderItem;
 import com.radu.test.spring.store.entity.Product;
-import com.radu.test.spring.store.repository.OrderItemRepository;
 import com.radu.test.spring.store.repository.OrderRepository;
 import com.radu.test.spring.store.repository.ProductRepository;
 import com.radu.test.spring.store.repository.UserRepository;
@@ -35,9 +34,6 @@ public class OrderService {
 	private UserRepository userRepository;
 	@Autowired
 	private ProductRepository productRepository;
-	
-	@Autowired
-	private OrderItemRepository orderItemRepository;
 	
 	@Autowired
 	private DTODataMapper dataMapper;
@@ -56,11 +52,13 @@ public class OrderService {
 		orderRequest.getProducts().forEach(item->{
 			Product product = productRepository.findById(item.getProductId()).get();
 			OrderItem orderItem = new OrderItem();
+			orderItem.setOrder(order);
 			orderItem.setTotalPrice(BigDecimal.ZERO);
 			orderItem.setTotalPriceDiscount(BigDecimal.ZERO);
 			orderItem.setProduct(product);
 			orderItem.setAmount(item.getAmount());
 			orderItem.setTotalPrice(product.getPrice().multiply(new BigDecimal(item.getAmount())));
+			orderItem.setTotalPriceDiscount(orderItem.getTotalPrice());
 			Membership membership = order.getCustomer().getMembership();
 			if (membership != null) {
 				membership.getDiscounts().forEach(prodDisc->{
@@ -79,14 +77,10 @@ public class OrderService {
 		log.info(String.format("New order created with id [%d].", savedOrder.getId()));
 	}
 
-	@Transactional
 	public OrderDTO getOrder(Long orderId) {
 		log.info(String.format("Loading order id [%d].", orderId));
 		Optional<Order> optionalOrder = orderRepository.findById(orderId);
 		Order order = optionalOrder.get();
-		List<OrderItem> orderItems = order.getOrderItems();
-		List<OrderItem> orderItemList = orderItemRepository.findByOrderId(orderId);
-//		dataMapper.mapToOrderItemDTO(orderItemList);
 		return dataMapper.mapToOrderDTO(order);
 	}
 }

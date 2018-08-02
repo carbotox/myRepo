@@ -1,3 +1,5 @@
+package com.radu.test.spring.store.controller;
+
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
 
@@ -13,8 +15,10 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.radu.test.spring.store.Application;
+
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = Application.class,webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class OrderControllerIT {
 	
 	@LocalServerPort
@@ -24,7 +28,7 @@ public class OrderControllerIT {
 
     @Autowired
     private TestRestTemplate template;
-
+    
     @Before
     public void setUp() throws Exception {
         this.base = new URL("http://localhost:" + port + "/rest/salut");

@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +20,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.radu.test.spring.store.Application;
+import com.radu.test.spring.store.SecurityConfig;
 import com.radu.test.spring.store.dto.OrderDTO;
 import com.radu.test.spring.store.dto.OrderRequest;
 import com.radu.test.spring.store.dto.ProductRequestItem;
@@ -65,17 +65,17 @@ public class OrderControllerIT {
 	public void createOrder() throws Exception {
 		HttpEntity<OrderRequest> inputEntity = new HttpEntity<OrderRequest>(orderReq);
 
-		ResponseEntity<String> response = template.exchange("http://localhost:" + port + "/rest/order/create", HttpMethod.POST, inputEntity, String.class);
+		ResponseEntity<String> response = template.withBasicAuth(SecurityConfig.USER_NAME, SecurityConfig.USER_PASSWORD).exchange("http://localhost:" + port + "/rest/order/create", HttpMethod.POST, inputEntity, String.class);
 		assertEquals(response.getStatusCodeValue(),201);
 		
 	}
 
 	@Test
 	public void getOrder() throws Exception {
-		ResponseEntity<OrderDTO> response = template.getForEntity(getOrderURL.toString(), OrderDTO.class);
+		ResponseEntity<OrderDTO> response = template.withBasicAuth(SecurityConfig.USER_NAME, SecurityConfig.USER_PASSWORD).getForEntity(getOrderURL.toString(), OrderDTO.class);
 		assertEquals(response.getStatusCodeValue(),200);
 		OrderDTO orderResult = response.getBody();
-		assertEquals(orderResult.getCustomerName(),"Gigel Petrescu");
+		assertEquals(orderResult.getCustomerName(),"Fane Popescu");
 		assertEquals(orderResult.getTotalPrice(),new BigDecimal("395.00"));
 		assertEquals(orderResult.getOrderItems().size(),2);
 	}

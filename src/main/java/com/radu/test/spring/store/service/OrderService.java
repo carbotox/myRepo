@@ -46,9 +46,10 @@ public class OrderService {
 	/**
 	 * Creates and saves new order.
 	 * @param orderRequest
+	 * @return id of the new created order
 	 */
 	@Transactional
-	public void createOrder(OrderRequest orderRequest) {
+	public String createOrder(OrderRequest orderRequest) {
 		log.info("Saveing new order!");
 		
 		Order order = new Order();
@@ -84,6 +85,7 @@ public class OrderService {
 		order.setOrderItems(orderItems);
 		Order savedOrder = orderRepository.save(order);
 		log.info(String.format("New order created with id [%d].", savedOrder.getId()));
+		return savedOrder.getId()+"";
 	}
 
 	/**

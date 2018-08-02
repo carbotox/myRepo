@@ -12,8 +12,8 @@ import org.springframework.security.web.firewall.HttpFirewall;
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-	private static final String USER_NAME = "user";
-	private static final String USER_PASSWORD = "abc";
+	public static final String USER_NAME = "user";
+	public static final String USER_PASSWORD = "abc";
 	private static final String USER_ROLE = "USER";
 
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {

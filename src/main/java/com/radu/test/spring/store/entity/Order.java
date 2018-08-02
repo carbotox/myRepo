@@ -89,4 +89,11 @@ public class Order {
 		this.customer = customer;
 	}
 
+	@Override
+	public String toString() {
+		return "Order [id=" + id + ", date=" + date + ", totalPrice=" + totalPrice + ", totalPriceDiscount="
+				+ totalPriceDiscount + "]";
+	}
+
+	
 }

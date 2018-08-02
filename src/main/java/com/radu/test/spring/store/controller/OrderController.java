@@ -3,6 +3,8 @@ package com.radu.test.spring.store.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,9 +45,10 @@ public class OrderController {
 	
 	@PostMapping("/create")
 	@ResponseStatus(HttpStatus.CREATED)
-	public void createOrder(@RequestBody OrderRequest orderRequest) {
+	public @ResponseBody String createOrder(@RequestBody OrderRequest orderRequest, HttpServletRequest request) {
 		logger.info("Creating new Order.");
-		orderService.createOrder(orderRequest);
+		String createOrder = orderService.createOrder(orderRequest);
+		return "http://localhost:8080/rest/order/"+createOrder; 
 	}
 
 	@GetMapping("/dummyRequest")

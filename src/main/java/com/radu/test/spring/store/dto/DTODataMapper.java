@@ -62,7 +62,7 @@ public class DTODataMapper {
 		dto.setTotalPriceDiscount(order.getTotalPriceDiscount());
 		
 		order.getOrderItems().forEach(orderItem->{
-			log.info("Mapping orderItem entoty to dto."+orderItem);
+			log.info("Mapping orderItem entity to dto."+orderItem);
 			dto.getOrderItems().add(mapToOrderItemDTO(orderItem));
 		});
 		return dto;

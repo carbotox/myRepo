@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -83,4 +82,12 @@ public class OrderItem {
 	public void setTotalPriceDiscount(BigDecimal totalPriceDiscount) {
 		this.totalPriceDiscount = totalPriceDiscount;
 	}
+
+	@Override
+	public String toString() {
+		return "OrderItem [id=" + id + ", product=" + product + ", amount=" + amount + ", totalPrice=" + totalPrice
+				+ ", totalPriceDiscount=" + totalPriceDiscount + "]";
+	}
+	
+	
 }

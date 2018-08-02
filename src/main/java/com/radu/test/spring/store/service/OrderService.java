@@ -23,6 +23,11 @@ import com.radu.test.spring.store.repository.OrderRepository;
 import com.radu.test.spring.store.repository.ProductRepository;
 import com.radu.test.spring.store.repository.UserRepository;
 
+/**
+ * Order service layer class.
+ * @author Radu Nicoara
+ *
+ */
 @Service
 public class OrderService {
 	
@@ -38,6 +43,10 @@ public class OrderService {
 	@Autowired
 	private DTODataMapper dataMapper;
 	
+	/**
+	 * Creates and saves new order.
+	 * @param orderRequest
+	 */
 	@Transactional
 	public void createOrder(OrderRequest orderRequest) {
 		log.info("Saveing new order!");
@@ -77,6 +86,11 @@ public class OrderService {
 		log.info(String.format("New order created with id [%d].", savedOrder.getId()));
 	}
 
+	/**
+	 * Finds order by orderId.
+	 * @param orderId
+	 * @return
+	 */
 	public OrderDTO getOrder(Long orderId) {
 		log.info(String.format("Loading order id [%d].", orderId));
 		Optional<Order> optionalOrder = orderRepository.findById(orderId);

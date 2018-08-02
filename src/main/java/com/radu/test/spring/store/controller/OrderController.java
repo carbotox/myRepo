@@ -21,6 +21,11 @@ import com.radu.test.spring.store.dto.OrderRequest;
 import com.radu.test.spring.store.dto.ProductRequestItem;
 import com.radu.test.spring.store.service.OrderService;
 
+/**
+ * Order REST controller 
+ * @author Radu Nicoara
+ *
+ */
 @RestController
 @RequestMapping("/rest/order")
 public class OrderController {
@@ -47,16 +52,20 @@ public class OrderController {
 	public @ResponseBody OrderRequest getOrderRequest() {
 		logger.info("Loading OrderRequest dummy.");
 		OrderRequest orderReqDummy = new OrderRequest();
-		orderReqDummy.setCustomerId(2l);
+		orderReqDummy.setCustomerId(11l);
 		List<ProductRequestItem> products = new ArrayList<ProductRequestItem>();
 		ProductRequestItem p1 = new ProductRequestItem();
-		p1.setAmount(3);
-		p1.setProductId(1l);
+		p1.setAmount(1);
+		p1.setProductId(3l);
 		products.add(p1);
 		ProductRequestItem p2 = new ProductRequestItem();
-		p2.setAmount(1);
-		p1.setProductId(2l);
+		p2.setAmount(3);
+		p2.setProductId(5l);
 		products.add(p2);
+		ProductRequestItem p3 = new ProductRequestItem();
+		p3.setAmount(2);
+		p3.setProductId(6l);
+		products.add(p3);
 		orderReqDummy.setProducts(products);
 		return orderReqDummy;
 	}

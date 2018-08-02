@@ -13,10 +13,12 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import com.radu.test.spring.store.service.OrderService;
 
 @ControllerAdvice(assignableTypes = OrderService.class)
-public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
-	private static final Logger log = LoggerFactory.getLogger(RestResponseEntityExceptionHandler.class);
+public class RestExceptionHandler extends ResponseEntityExceptionHandler {
+	
+	private static final Logger log = LoggerFactory.getLogger(RestExceptionHandler.class);
+	
 	@ExceptionHandler(value 
-		      = { IllegalArgumentException.class, IllegalStateException.class, NullPointerException.class })
+		      = { IllegalArgumentException.class, IllegalStateException.class })
 		    protected ResponseEntity<Object> handleConflict(
 		      RuntimeException ex, WebRequest request) {
 				log.error("Internal order server error.",ex);

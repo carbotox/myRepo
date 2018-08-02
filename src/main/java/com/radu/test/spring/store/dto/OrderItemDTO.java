@@ -6,6 +6,11 @@ import java.math.BigDecimal;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.radu.test.spring.store.entity.Color;
 
+/**
+ * DTO object for sending order item to rest client.
+ * @author Radu Nicoara
+ *
+ */
 @JsonInclude(JsonInclude.Include.NON_NULL) 
 public class OrderItemDTO implements Serializable {
 

@@ -11,11 +11,21 @@ import com.radu.test.spring.store.entity.OrderItem;
 import com.radu.test.spring.store.entity.Product;
 import com.radu.test.spring.store.entity.TextileProduct;
 
+/**
+ * Helper class for mapping from jpa entity to dto object.
+ * @author Radu Nicoara
+ *
+ */
 @Component
 public class DTODataMapper {
 	
 	private static final Logger log = LoggerFactory.getLogger(DTODataMapper.class);
 
+	/**
+	 * Converts OrderItem jpa entity to OrderItemDTO dto object.
+	 * @param orderItem
+	 * @return
+	 */
 	public OrderItemDTO mapToOrderItemDTO(OrderItem orderItem) {
 		OrderItemDTO dto = new OrderItemDTO();
 		dto.setAmount(orderItem.getAmount());
@@ -39,6 +49,11 @@ public class DTODataMapper {
 		return dto;
 	}
 	
+	/**
+	 * Converts Order jpa entity to OrderDTO dto object.
+	 * @param order
+	 * @return
+	 */
 	public OrderDTO mapToOrderDTO(Order order) {
 		OrderDTO dto = new OrderDTO();
 		dto.setCustomerName(order.getCustomer().getFirstName()+" "+order.getCustomer().getLastName());

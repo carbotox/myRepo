@@ -6,6 +6,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * DTO object for sending Order to rest client.
+ * 
+ * @author Radu Nicoara
+ *
+ */
 public class OrderDTO implements Serializable {
 	/**
 	 * 

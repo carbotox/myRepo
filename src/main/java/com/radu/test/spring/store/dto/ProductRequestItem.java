@@ -2,6 +2,12 @@ package com.radu.test.spring.store.dto;
 
 import java.io.Serializable;
 
+/**
+ * DTO object for get order input.
+ * 
+ * @author Radu Nicoara
+ *
+ */
 public class ProductRequestItem implements Serializable {
 	
 	/**
